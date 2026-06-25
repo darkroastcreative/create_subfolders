@@ -10,7 +10,7 @@ try:
 except IndexError:
     sys.exit('Root folder path not detected. Please ensure that this script is run with the path to a valid directory included as the first argument (e.g., \'/Users/david/Downloads\').')
 
-file_list: list[str] = os.listdir(root_folder_path)
+file_list: list[str] = [file for file in os.listdir(root_folder_path) if os.path.isfile(os.path.join(root_folder_path, file)) and not file.startswith('.')]
 
 file_list_length: int = len(file_list)
 target_subfolder_count: int = math.ceil(file_list_length / TARGET_SUBFOLDER_SIZE)
